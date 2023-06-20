@@ -1,23 +1,27 @@
-package com.example.study_servlets;
+package com.example.study_servlets.controlls;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/helloWorldServlet")
-public class HelloWorldServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/getRequestParamsServlet")
+public class GetRequestParamsServlet extends HttpServlet {
+    @Override   //상속이 된 걸 확장하는구나!! 알 수 있음
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          // HTML을 완성한 다음, 이를 상대에게 보내줄때... return역할을 해주는 애↑(HttpServletResponse resp)
-        System.out.println("HelloWorldServlet - doGet()");
-        try {   // 파일을 특정 라인을 잘라서 넣어 네트워크로보냄. 왜냐 컴퓨터 자원을 나 혼자 쓰지않기때문.
-            String firstName = "request.getParameter(firstName)";
-            String secondName = "request.getParameter(secondName)";
+        try {
+            /* doGet이라는 메소드에서 url와 클래스가 맵핑될 때, 클라이언트가 추가적으로 전하는 정보가 날아옴
+             * 해당하는 부분이 서버가 들 때(예 메인 펑션뜸) 자기가 사용하는 리소스를 인스턴스화 시킴(new. 그래야 쓸 수 있음)
+             * 전체적으로 올라와 있는 상태에서 doGet으로 불러서 parameter로 던져줌
+             * getparameter를 사용해서 name구분자로 원하는 값을 꺼낼 수 있음. 이러한 이유로 "name, value, name, value..."함
+             */
+            String firstName = "Jiwon";   // 변수 내부 지정
+            // firstName은 내부 변수, first_name은 외부 변수.  이를 알아보기 위해 변수명이 다름
+            String secondName = "Kim";
             PrintWriter printWriter = response.getWriter(); 
             // String contents = "Jiwon Kim ! ";
             String contents = "<!DOCTYPE html>\r\n" + //
@@ -34,15 +38,12 @@ public class HelloWorldServlet extends HttpServlet {
                     "</html> ";
             printWriter.println(contents); 
             printWriter.close();
+            // PrintWriter printWriter = response.getWriter();          // 클라이언트는 url or form으로 변수 전달??
+            // String contents = "";
+            // printWriter.println(contents);
+            // printWriter.close();   
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("HelloWorldServlet - doGet() done.");
-    }    
+    }
 }
-/* terminal에서 받는 방식과 동일하다. 얘는 웹으로 받을 수 없는 상태
- * 그래서 얘를 이 기능으로 사용할게! 라고 래핑함 = @
- * 인식할 때 얘를 사용. 랩핑되었기 때문에 url에서 사용하는 주소 패턴을 넣어줌: ip, port, 주소
- * 내부는 클래스이름(인스턴스화 된 상태에서 접근해야 함)으로 접근하지만, 
- * 외부는 클래스로 인식불가능하므로 url방식으로 접근해서 인식함
-*/
