@@ -11,13 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/getRequestParamsServlets")
 public class GetRequestParamsServlets extends HttpServlet {
-    @Override
+    @Override//상속이 된 걸 확장하는구나!! 알 수 있음
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+             /* doGet이라는 메소드에서 url와 클래스가 맵핑될 때, 클라이언트가 추가적으로 전하는 정보가 날아옴
+             * 해당하는 부분이 서버가 들 때(예 메인 펑션뜸) 자기가 사용하는 리소스를 인스턴스화 시킴(new. 그래야 쓸 수 있음)
+             * 전체적으로 올라와 있는 상태에서 doGet으로 불러서 parameter로 던져줌
+             * getparameter를 사용해서 name구분자로 원하는 값을 꺼낼 수 있음. 이러한 이유로 "name, value, name, value..."함
+             */
             String firstName = request.getParameter("first_name");
             String secondName = request.getParameter("second_name");
             PrintWriter printWriter = response.getWriter(); 
             // String contents = "Jiwon Kim ! ";
+               // 변수 내부 지정
+            // firstName은 내부 변수, first_name은 외부 변수.  이를 알아보기 위해 변수명이 다름
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "<head>\r\n" + //
