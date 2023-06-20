@@ -26,7 +26,7 @@ public class MynameRequestServlet extends HttpServlet {
                 "    <div>input ypur name</div>\r\n" + //
                 "    <form action=\"/getRequestParamsServlet\" method=\"get\">\r\n" + //
                 "    <div>\r\n" + //
-                "        fist name : <input type=\"text\" name=\"first_name\">   \r\n" + //
+                "        first name : <input type=\"text\" name=\"first_name\">   \r\n" + //
                 "    </div>\r\n" + //
                 "    <div>\r\n" + //
                 "        second name : <input type=\"text\" name=\"second_name\">\r\n" + //
