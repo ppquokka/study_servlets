@@ -1,0 +1,12 @@
+.base{
+    background-color: #f8f9fa;
+    margin: 0 auto;
+}
+
+
+.title{
+    background-color: #f8f9fa;
+    text-align: center;
+    margin: 0 auto;
+    padding: 50px 10px 10px 10px; 
+}

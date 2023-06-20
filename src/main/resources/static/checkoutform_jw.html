@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out Form</title>
+    <link rel="stylesheet" href="../static/checkoutform_jw.css">
+</head>
+
+<body class="base">
+    <main class="title">
+        <div class="py-5 text-center">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt width="72" height="57">
+            <h2>Checkout form</h2>
+            <div>
+                <div><p>Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a</p></div>
+                <div><p>validation state that can be triggered by attempting to submit the form without completing it.</p></div>
+            </div>
+        </div>
+    </main>
+
+
+    <h3>Billding address</h3>
+    <div>
+        <form action="index.html">
+            First name <input type="text" name="first_name">            
+            Last name <input type="text" name="last_name">
+           
+            <div>Username</div>
+            <div>@<input type="text" name="username" placeholder="Username"></div>
+           
+            <div>Email(Optional)</div>
+            <input type="email" name="email_optional" placeholder="you@example.com">
+            <div>Adress</div>
+            <input type="text" name="adress" placeholder="1234 Main St">
+            <div>Address 2 (Optional)</div>
+            <input type="text" name="address2_oprtional" placeholder="Apartmentorsuite">
+            <div>
+                <label for="country">Country</label>
+                <select name="country" id="country">
+                    <option value="" selected>Choose...</option>
+                    <option value="korea">Korea</option>
+                    <option value="china">China</option>
+                    <option value="japan">Japan</option>
+                    <option value="canada">Canada</option>
+                </select>
+           
+                <label for="state">State</label>
+                <select name="state" id="state">
+                    <option value="" selected>Choose...</option>
+                    <option value="seoul">Seoul</option>
+                    <option value="busan">Busan</option>
+                    <option value="jeju">Jeju</option>
+                    <option value="gwangju">Gwangju</option>
+                </select>
+           
+            Zip <input type="text" name="zip">
+           </div>
+            <hr>
+        </form>
+    </div>
+</body>
+
+</html>
