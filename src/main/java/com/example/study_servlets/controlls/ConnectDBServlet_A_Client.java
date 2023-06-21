@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
+import com.example.study_servlets.daos.FactorysDao;
 
 @WebServlet(urlPatterns = "/connectDBServle_A_Client")
 public class ConnectDBServlet_A_Client extends HttpServlet {
@@ -58,16 +61,33 @@ public class ConnectDBServlet_A_Client extends HttpServlet {
                    "            <tbody>" ;
            
             // - query Edit
+            /*  묶음으로 넘어감
             Commons commons = new Commons();
             Statement statement = commons.getStatement();   // 이것만 바꾸면 commons ...
             String query = "SELECT * FROM factorys";
             ResultSet resultSet = statement.executeQuery(query); 
-            while (resultSet.next()) { 
-                contents = contents + "  <tr>\r\n" +               // tbody다음에 tr
-                   "                    <td>"+resultSet.getString("Company_ID")+"</td>\r\n" + // 변수 넣음
-                   "                    <td>"+resultSet.getString("Company")+"</td>\r\n" + //
+            */
+
+            FactorysDao factoryDao = new FactorysDao();
+            ArrayList factoryList = new ArrayList();
+            factoryList = factoryDao.selectAll();          //select 로 DB에가서...
+            for(int i=0; i < factoryList.size(); i=i+1){   // list기 때문에 for문
+                HashMap hashMap = new HashMap();           // 첫번째는 해쉬맵이 나올거다. 안에서만 우선 쓴다
+                hashMap = (HashMap) factoryList.get(i);
+                 contents = contents + "  <tr>\r\n" +               // tbody다음에 tr
+                   "                    <td>"+hashMap.get("Company_ID")+"</td>\r\n" + // 변수 넣음
+                   "                    <td>"+hashMap.get("Company")+"</td>\r\n" + //
                    "                </tr>\r\n" ;                   // 위의 문장과 붙어서 while문 돌면서 계속 늘어날 예정
             }
+            
+            // DB와 HTML을 구분하여 작성. 특정 매소드의 어느 라인, 어느 에러가 표시됨. 
+            //그럼 그 매소드만 에러 수정 하면 됨. 유지 보수에 편리함
+
+            /*
+            while (resultSet.next()) { 
+               원래는 여기에 'contents = contents + '가 있었음
+            }
+            */
 
             contents = contents + "<tbody>\r\n" + //
                    "            </tbody>\r\n" + //
@@ -86,6 +106,7 @@ public class ConnectDBServlet_A_Client extends HttpServlet {
             printWriter.close();
            
             // SELECT COUNT(*) AS CNT FROM FACTORYS;
+            /*
             query = "SELECT COUNT(*) AS CNT FROM FACTORYS";
             resultSet = statement.executeQuery(query);
             int totalCount = 0;
@@ -93,6 +114,7 @@ public class ConnectDBServlet_A_Client extends HttpServlet {
                 System.out.println(resultSet.getInt("CNT"));
                 totalCount = resultSet.getInt("CNT");
             }
+            */
 
             /*
              * insert into FACTORYS
@@ -100,6 +122,8 @@ public class ConnectDBServlet_A_Client extends HttpServlet {
              * value
              * ('car-01', 'AUDI');)
              */
+
+            /*
             String companyId = "car-01 ";
             String company = "AUDI ";
             query = "insert into FACTORYS " +
@@ -123,6 +147,8 @@ public class ConnectDBServlet_A_Client extends HttpServlet {
                     "Company_ID = 'CAR-01' ";
             count = statement.executeUpdate(query);
 
+            */
+            
             System.out.println();
         } catch (Exception e) {
             System.out.println(e.getMessage());
