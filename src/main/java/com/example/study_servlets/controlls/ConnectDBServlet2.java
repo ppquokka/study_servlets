@@ -28,7 +28,7 @@ public class ConnectDBServlet2 extends HttpServlet {
             System.out.println("DB연결 성공\n");
             Statement statement = connection.createStatement();
 
-            // 클라이언트에 html 화면 제공
+            // 클라이언트에 html 화면 제공  
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "\r\n" + //
@@ -68,6 +68,7 @@ public class ConnectDBServlet2 extends HttpServlet {
                                           "</html>";
 
             // 클라이언트에 html 화면 제공
+            response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter(); 
             printWriter.println(contents); 
             printWriter.close();
