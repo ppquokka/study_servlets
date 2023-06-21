@@ -28,7 +28,7 @@ public class CarInforsServlet_jw extends HttpServlet {
             Connection connection = DriverManager.getConnection(url, user, password);
             System.out.println("DB연결 성공\n");
 
-            Commons commoms = new Commons();
+            Commons_s commoms = new Commons_s();
 
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM db_cars.car_infors";
