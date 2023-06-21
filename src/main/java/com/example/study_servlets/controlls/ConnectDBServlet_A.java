@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(urlPatterns = "/connectDBServle")
-public class ConnectDBServlet extends HttpServlet {
+public class ConnectDBServlet_A extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { // study_javas에서 ConnectDBs_Servlet.java의 try~catch문 복붙함
