@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -52,6 +53,7 @@ public class CarInforsServlet extends HttpServlet {
             query = "INSERT INTO car_infors (CAR_NAME,YEAR,CAR_INFOR_ID,COMPANY_ID)\n" + //
                     "value ('"+carName+"', '"+year+"', '"+carInforID+"', '"+companyID+"')";
             int count = statement.executeUpdate(query);
+            
             System.out.println(count);
             System.out.println();
         } catch (Exception e) {
