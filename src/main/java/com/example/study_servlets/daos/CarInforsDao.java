@@ -1,24 +1,15 @@
 package com.example.study_servlets.daos;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.example.study_servlets.commons.Common;
-import javax.servlet.http.HttpServlet;
 
-@WebServlet(urlPatterns = "/carInforsDao")
-public class CarInforsDao extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        System.out.println("carInforsDao - doGet()");
+public class CarInforsDao {
+    public ArrayList selectAll() {
+
         ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
         try {
             Common commons = new Common();
@@ -40,6 +31,7 @@ public class CarInforsDao extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+        return arrayList;
+
     }
 }
