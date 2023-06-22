@@ -14,7 +14,7 @@ public class Common {
         return UUID.randomUUID().toString();
     }   
     public Statement getStatement(){
-        String url = "jdbc:mysql://192.168.0.25:3306/db_cars";
+        String url = "jdbc:mysql://192.168.0.41:3306/db_cars";
         String user = "yojulab";
         String password = "!yojulab*";
 
