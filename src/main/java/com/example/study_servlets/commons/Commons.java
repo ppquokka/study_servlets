@@ -15,10 +15,10 @@ public class Commons {
             String user = "yojulab";
             String password = "!yojulab*";
 
-        Statement statement = null;
+        java.sql.Statement statement = null;
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
-            statement = (Statement) connection.createStatement();
+            statement = connection.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
