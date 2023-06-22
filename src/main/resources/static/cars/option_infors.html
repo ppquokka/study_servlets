@@ -8,17 +8,26 @@
 </head>
 <body>
     <div class="container">
+        <form action="http://192.168.0.41:8080/optionsInforsServlet">     
+        <lable for="">검색</lable>
+        <input type="text" name ="search">
+        <button>검색 하기</button>
+        </form>
+    </div>
+    <div class="container">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>OPTION_INFOR_ID</th>
                     <th>OPTION_NAME</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>OI001</td>
                     <td>네비게이션</td>
+                    <td><button formaction="">OI001</button></td>
                 </tr>
             </tbody>
         </table>

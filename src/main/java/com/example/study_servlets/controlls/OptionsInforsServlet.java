@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
+import com.example.study_servlets.daos.OptionInforsDao;
 
 @WebServlet(urlPatterns = "/optionsInforsServlet") // 동작을 하는 애는 매소드. 얘를 찾아서 싸야함. 얘가 doGet
 public class OptionsInforsServlet extends HttpServlet { // 클라이언트 요청 시 화면을 보여줌. http가 들어올 때 url 패턴으로 들어옴
@@ -19,12 +22,24 @@ public class OptionsInforsServlet extends HttpServlet { // 클라이언트 요�
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+             String search = request.getParameter("search");
+            /*
             Commons commons = new Commons();
             Statement statement = commons.getStatement();     // Editor in MySQL workbench
             String query = "SELECT *\n" + //
                     "FROM option_infors;";
             ResultSet resultSet = statement.executeQuery(query);       // 쿼리넣기, 쿼리 결과는 리설트셋으로 나옴
                                                                     // while문을 돌려서 프린트했다고 해서 이건 html에 들어가지 않음. 터미널에서만 볼 수 있음
+            */
+
+            /*  String temp = " <div class=\"container\">\r\n" + //
+                    "        <form action=\"/optionsInforsServlet\">     \r\n" + //
+                    "        <lable for=\"\">\uAC80\uC0C9</lable>\r\n" + //
+                    "        <input type=\"text\" name =\"search\">\r\n" + //
+                    "        <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                    "        </form>\r\n" + //
+                    "    </div>";   // 작성 완료된 html에서 뜯어오기  */
+
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "<head>\r\n" + //
@@ -36,6 +51,13 @@ public class OptionsInforsServlet extends HttpServlet { // 클라이언트 요�
                     "    <title>Document</title>\r\n" + //
                     "</head>\r\n" + //
                     "<body>\r\n" + //
+                    " <div class=\"container\">\r\n" + //
+                    "        <form action=\"/optionsInforsServlet\">     \r\n" + //
+                    "        <lable for=\"\">\uAC80\uC0C9</lable>\r\n" + //
+                    "        <input type=\"text\" name =\"search\"value='"+search+"'>\r\n" + //
+                    "        <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                    "        </form>\r\n" + //
+                    "    </div>\r\n" + //
                     "    <div class=\"container\">\r\n" + //
                     "        <table class=\"table table-bordered table-hover\">\r\n" + //
                     "            <thead>\r\n" + //
@@ -45,13 +67,21 @@ public class OptionsInforsServlet extends HttpServlet { // 클라이언트 요�
                     "                </tr>\r\n" + //
                     "            </thead>\r\n" + //
                     "            <tbody>\r\n" ;
-                while(resultSet.next()){
-                                                       // System.out.println( + ", " + );
-                contents = contents + "                <tr>\r\n" + //
-                    "                    <td>"+resultSet.getString("OPTION_INFOR_ID")+"</td>\r\n" + //
-                    "                    <td>"+resultSet.getString("OPTION_NAME")+"</td>\r\n" + //
+                OptionInforsDao optionInforsDao = new OptionInforsDao(); // class로 만들었으니 instance화 시켜야 한다
+                ArrayList optionInforList = new ArrayList<>();   // arraylist를 받기 위함. 그 class의 method  콜하기. line by line 으로 값이 들어감
+                String search = request.getParameter("search");
+                optionInforList = optionInforsDao.SelectWithSearch(search);   //결과값이 arraylist. 근데 아직 받아낼 준비가 안되서 위에 작성해줌.
+                // optionInforList는 값이 초기화되어있음. 그래서 결과값을 받을 때 초기화 시키고 받는다. 
+                // while문을 for문으로 대치하기
+                for(int i=0; i < optionInforList.size(); i=i+1){ // while(resultSet.next())  // System.out.println( + ", " + );
+                    HashMap optionInforRecord = new HashMap<>();    // 루핑이 돌면서 값을 넣음 
+                    optionInforRecord = (HashMap) optionInforList.get(i); 
+                    contents = contents + "                <tr>\r\n" + //
+                    "                    <td>"+optionInforRecord.get("OPTION_INFOR_ID")+"</td>\r\n" + //
+                    "                    <td>"+optionInforRecord.get("OPTION_NAME")+"</td>\r\n" + //
                     "                </tr>\r\n";
                     }
+                 
                 contents = contents + "            </tbody>\r\n" + //
                     "        </table>\r\n" + //
                     "    </div>\r\n" + //
