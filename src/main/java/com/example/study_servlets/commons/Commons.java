@@ -10,6 +10,11 @@ import java.util.UUID;
 import com.mysql.cj.xdevapi.Statement;
 
 public class Commons {
+
+      public String generateUUID() {
+        return UUID.randomUUID().toString();
+    }   
+    
     public java.sql.Statement getStatement(){
             String url = "jdbc:mysql://192.168.0.25:3306/db_cars"; 
             String user = "yojulab";

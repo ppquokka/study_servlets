@@ -21,6 +21,7 @@ public class OptionsInforsServlet extends HttpServlet { // 클라이언트 요�
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                
         try {
              String search = request.getParameter("search");
             /*
@@ -69,7 +70,7 @@ public class OptionsInforsServlet extends HttpServlet { // 클라이언트 요�
                     "            <tbody>\r\n" ;
                 OptionInforsDao optionInforsDao = new OptionInforsDao(); // class로 만들었으니 instance화 시켜야 한다
                 ArrayList optionInforList = new ArrayList<>();   // arraylist를 받기 위함. 그 class의 method  콜하기. line by line 으로 값이 들어감
-                String search = request.getParameter("search");
+                search = request.getParameter("search");
                 optionInforList = optionInforsDao.SelectWithSearch(search);   //결과값이 arraylist. 근데 아직 받아낼 준비가 안되서 위에 작성해줌.
                 // optionInforList는 값이 초기화되어있음. 그래서 결과값을 받을 때 초기화 시키고 받는다. 
                 // while문을 for문으로 대치하기
