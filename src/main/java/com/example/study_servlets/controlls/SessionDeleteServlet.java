@@ -17,26 +17,31 @@ public class SessionDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            //expired cookie
+            // expires session
             HttpSession httpSession = request.getSession();
-            httpSession.invalidate();  //server side
+            httpSession.invalidate(); // 세션 아웃. Server side
 
-                //delete cookie
+            // delete cookies
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
+            String content = "<div>CookiesGetAndDeleteServle</div>";
+            for (Cookie cookie : cookies) { // 포문 내에서 쿠키스는 array로 되어있음. 그 안에 쿠키가 담겨있음
+                                            // 그 쿠키는 hashMap방식과 매우 유사하다
                 String name = cookie.getName();
                 String value = cookie.getValue();
-                if (name.equals("JSESSIONID")) { // 쿠키 삭제  client side
+                if (name.equals("JSESSIONID")) { // 쿠키 삭제  - client side
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
-                }
+                } 
             }
+
             PrintWriter printWriter = response.getWriter();
-            String contents = "<div>log out</div>";
+            String contents = "<div>Logout !</div>";
             printWriter.println(contents);
             printWriter.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        super.doGet(request, response);
     }
+
 }
