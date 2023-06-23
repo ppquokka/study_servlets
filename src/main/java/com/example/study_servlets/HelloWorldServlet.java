@@ -15,10 +15,14 @@ public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           // HTML을 완성한 다음, 이를 상대에게 보내줄때... return역할을 해주는 애↑(HttpServletResponse resp)
         System.out.println("HelloWorldServlet - doGet()");
-        try {   // 파일을 특정 라인을 잘라서 넣어 네트워크로보냄. 왜냐 컴퓨터 자원을 나 혼자 쓰지않기때문.
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter printWriter = response.getWriter(); 
+            String contents = "Yoju Lab !";
+            /*
+            // 파일을 특정 라인을 잘라서 넣어 네트워크로보냄. 왜냐 컴퓨터 자원을 나 혼자 쓰지않기때문.
             String firstName = "request.getParameter(firstName)";
             String secondName = "request.getParameter(secondName)";
-            PrintWriter printWriter = response.getWriter(); 
             // String contents = "Jiwon Kim ! ";
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
@@ -32,6 +36,7 @@ public class HelloWorldServlet extends HttpServlet {
                     "    <div>second Name : "+secondName+" </div>\r\n" + //
                     "</body>\r\n" + //
                     "</html> ";
+            */
             printWriter.println(contents); 
             printWriter.close();
         } catch (Exception e) {
