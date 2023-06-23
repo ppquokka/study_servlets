@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.daos.OptionInforsDao;
 
-@WebServlet(urlPatterns = "optionInforsUpdateServle")
+@WebServlet(urlPatterns = "/optionInforsUpdateServle")
 public class OptionInforsUpdateServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
