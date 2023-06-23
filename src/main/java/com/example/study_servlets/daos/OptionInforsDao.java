@@ -6,47 +6,86 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.example.study_servlets.commons.Common;
+import com.example.study_servlets.commons.Commons;
 
 public class OptionInforsDao {
-    public int DeleteWithUniqueID(String unique_id){
+    public int UpdateWithUniqueID(String name) {
         int count = 0;
         try {
-            Common commons = new Common();
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement(); // Editor in MySQL workbench 띄움
+            String unique_id = commons.generateUUID();
+
+            String query = "UPDATE option_infors\n" + //
+                    "SET OPTION_NAME = '" + name + "'\n" + //
+                    "where OPTION_INFOR_ID = '" + unique_id + "'";
+
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+
+    }
+
+    public int InserWithUniqueID(String name) {
+        int count = 0;
+        try {
+            Commons commons = new Commons();
             Statement statement = commons.getStatement();
-            String query = "delete \n" + //
-                    "from option_infors\n" + //
-                    "where OPTION_INFOR_ID = '"+unique_id+"";
-           count = statement.executeUpdate(query);
+            String uniqiue_id = commons.generateUUID();
+            String query = "INSERT INTO option_infors\n" + //
+                    "(OPTION_INFOR_ID, OPTION_NAME)\n" + //
+                    "values\n" + //
+                    "('" + uniqiue_id + "', '" + name + "')";
+
+            count = statement.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return count;
     }
-    public ArrayList SelectWithSearch(String search){
-        ArrayList optionInforList = new ArrayList();
+
+    public int DeleteWithUniqueID(String unique_id) {
+        int count = 0;
         try {
-            if(search==null){
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement(); // Editor in MySQL workbench 띄움
+            String query = "DELETE FROM option_infors\n" + //
+                    "WHERE OPTION_INFOR_ID = '" + unique_id + "';";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
+
+    public ArrayList SelectWithSearch(String search) {
+        ArrayList optionInforList = new ArrayList<>();
+        try { // OptionsInforsServlet.java 와 연계
+            if (search == null) {
                 search = "";
             }
-            Common commons = new Common();
-            Statement statement = commons.getStatement(); // Editor in workbench
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement(); // Editor in MySQL workbench
             String query = "SELECT *\n" + //
                     "FROM option_infors\n" + //
-                    "WHERE OPTION_NAME like '"+search+"%'";
+                    "WHERE OPTION_NAME LIKE '" + search + "%';";
+
             ResultSet resultSet = statement.executeQuery(query);
 
-            HashMap optionInforRecord = new HashMap();
-            while (resultSet.next()) {
-                optionInforRecord = new HashMap();  //query를 돌려 나온 답을 키,값으로 HashMap에 저장한다.
-                optionInforRecord.put("OPTION_INFOR_ID",resultSet.getString("OPTION_INFOR_ID"));
-                optionInforRecord.put("OPTION_NAME",resultSet.getString("OPTION_NAME"));
+            HashMap optionInforRecord = new HashMap<>();
 
-                optionInforList.add(optionInforRecord);  //HashMap에 담은걸 ArrayList에 담는다.
+            while (resultSet.next()) {
+                optionInforRecord = new HashMap<>();
+                optionInforRecord.put("OPTION_INFOR_ID", resultSet.getString("OPTION_INFOR_ID"));
+                optionInforRecord.put("OPTION_NAME", resultSet.getString("OPTION_NAME"));
+
+                optionInforList.add(optionInforRecord);
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            // TODO: handle exception
         }
         return optionInforList;
     }

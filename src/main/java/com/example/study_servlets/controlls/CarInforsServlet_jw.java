@@ -22,7 +22,7 @@ public class CarInforsServlet_jw extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String url = "jdbc:mysql://192.168.0.41:3306/db_cars";
+            String url = "jdbc:mysql://192.168.0.41:8080/db_cars";
             String user = "yojulab";
             String password = "!yojulab*";
             Connection connection = DriverManager.getConnection(url, user, password);

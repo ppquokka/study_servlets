@@ -10,15 +10,20 @@ import java.util.UUID;
 import com.mysql.cj.xdevapi.Statement;
 
 public class Commons {
+
+      public String generateUUID() {
+        return UUID.randomUUID().toString();
+    }   
+    
     public java.sql.Statement getStatement(){
             String url = "jdbc:mysql://192.168.0.25:3306/db_cars"; 
             String user = "yojulab";
             String password = "!yojulab*";
 
-        Statement statement = null;
+        java.sql.Statement statement = null;
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
-            statement = (Statement) connection.createStatement();
+            statement = connection.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
