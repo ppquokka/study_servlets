@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myname_request</title>
 </head>
+
 <body>
-    <div>input ypur name</div>
+    <div>input your name</div>
     <form action="/getRequestParamsServlet" method="get">
     <div>
         fist name : <input type="text" name="first_name">   
@@ -16,6 +17,35 @@
     </div>
     <div>
         <button type="submit">보내기</button>
+    </div>
+</form>
+</body>
+</html>
+
+위의  쿼리 오류사항에 맞춰 수정해줘
+
+- 오류사항
+Caused by: java.lang.IllegalArgumentException: Invalid <url-pattern> [optionInforsInsertServlet] in servlet mapping
+
+ChatGPT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myname_request</title>
+</head>
+<body>
+    <div>Input your name</div>
+    <form action="/getRequestParamsServlet" method="get">
+    <div>
+        First name: <input type="text" name="first_name">   
+    </div>
+    <div>
+        Second name: <input type="text" name="second_name">
+    </div>
+    <div>
+        <button type="submit">Submit</button>
     </div>
 </form>
 </body>
