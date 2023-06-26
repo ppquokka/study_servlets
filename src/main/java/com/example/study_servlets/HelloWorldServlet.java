@@ -16,6 +16,7 @@ public class HelloWorldServlet extends HttpServlet {
           // HTML을 완성한 다음, 이를 상대에게 보내줄때... return역할을 해주는 애↑(HttpServletResponse resp)
         System.out.println("HelloWorldServlet - doGet()");
         try {   // 파일을 특정 라인을 잘라서 넣어 네트워크로보냄. 왜냐 컴퓨터 자원을 나 혼자 쓰지않기때문.
+            response.setContentType("text/html;charset=UTF-8");
             String firstName = "request.getParameter(firstName)";
             String secondName = "request.getParameter(secondName)";
             PrintWriter printWriter = response.getWriter(); 
