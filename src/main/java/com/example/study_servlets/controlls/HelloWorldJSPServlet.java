@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// 쏠 url: /helloWorldJSPServlet?company=YojuLab
 @WebServlet(urlPatterns = "/helloWorldJSPServlet")
 public class HelloWorldJSPServlet extends HttpServlet {               
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {                                                         
-            String contents = "Yoju Lab !";
+        try { 
+            //String contents = "Yoju Lab !";
+            String contents = request.getParameter("company"); 
             request.setAttribute("contents", contents);  // (키, 밸류(변수값))hashMap과 유사하다. 같지는 않다.
 
             //JSP에 보낼 키(받을 이름 내맘대로 설정),값(보낼 변수 넣어주기) 셋팅
