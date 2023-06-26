@@ -19,11 +19,15 @@ public class HelloWorldJSPServlet extends HttpServlet {
             String contents = "Yoju Lab !";
             request.setAttribute("contents", contents);  // (키, 밸류(변수값))hashMap과 유사하다. 같지는 않다.
 
+            //JSP에 보낼 키(받을 이름 내맘대로 설정),값(보낼 변수 넣어주기) 셋팅
+
             // 다음 파일 호출 : 위의 특정한 항목을 지정, 리퀘스트디스패처에 실어보냄 
             // (HttpServletRequest request, HttpServletResponse response)이 정보를 forward(request,response)에 실어보냄
             // 여기에 내가 알고있는 method를 같이 실어보내면 받는 애는 좋지
             // 상대가 받을 때 추가로 어디에 정보를 실어보내야 하나? JSP는 호출되는(받는)입장에서는 request로 정보가 들어옴
             // JSP 입장에서는 servelt에서는 request에 실어 보내고, JSP는 거기에서 받음
+
+            //JSP 호출
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/hellowordJSP.jsp"); // 가는 방향 결정남
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
