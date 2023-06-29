@@ -29,8 +29,8 @@ public class SessionCreateServlet extends HttpServlet {
             
             // login. JSessionID
             HttpSession httpSession = request.getSession(false); // 클라이언트의 상태에 따라 만들어낼지말지 결정함
-            if (httpSession != null) { // JSESSION 있음 : 로그인 되었다는 표시  /  = 해당되는 사항에 이미 서버에 똑같은게 있다.  해당 정보를 가져오기만 하면 됨
-                String usernameSession = (String) httpSession.getAttribute("username");
+            String usernameSession = (String) httpSession.getAttribute("username"); // 값을 체크하여야 함
+            if (httpSession != null && usernameSession != null) { // JSESSION 있음 : 로그인 되었다는 표시  /  = 해당되는 사항에 이미 서버에 똑같은게 있다.  해당 정보를 가져오기만 하면 됨
                 printWriter.println("<dis>username : "+usernameSession+"</div>");
             } else { // 없음 : 로그인
                 httpSession = request.getSession();   //오류 방어 코드
