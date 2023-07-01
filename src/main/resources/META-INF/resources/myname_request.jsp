@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>input ypur name</div>
-    <form action="/getRequestParamsServlet" method="get">
+    <form action="/getRequestParamsServlets" method="get">
     <div>
         fist name : <input type="text" name="first_name">   
     </div>

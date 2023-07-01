@@ -19,24 +19,23 @@ public class HelloWorldServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter(); 
             String contents = "Yoju Lab !";
-            /*
             // 파일을 특정 라인을 잘라서 넣어 네트워크로보냄. 왜냐 컴퓨터 자원을 나 혼자 쓰지않기때문.
             String firstName = "request.getParameter(firstName)";
             String secondName = "request.getParameter(secondName)";
             // String contents = "Jiwon Kim ! ";
-            String contents = "<!DOCTYPE html>\r\n" + //
-                    "<html lang=\"en\">\r\n" + //
-                    "<head>\r\n" + //
-                    "    <meta charset=\"UTF-8\">\r\n" + //
-                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
-                    "    <title> Hello World ! </title>\r\n" + //
-                    "</head>\r\n" + //
-                    "<body>\r\n" + //
-                    "    <div> first Name : "+firstName+" </div>\r\n" + //  위에 변수를 만들어서 넣어줌
-                    "    <div>second Name : "+secondName+" </div>\r\n" + //
-                    "</body>\r\n" + //
-                    "</html> ";
-            */
+            // String contents = "<!DOCTYPE html>\r\n" + //
+            //         "<html lang=\"en\">\r\n" + //
+            //         "<head>\r\n" + //
+            //         "    <meta charset=\"UTF-8\">\r\n" + //
+            //         "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
+            //         "    <title> Hello World ! </title>\r\n" + //
+            //         "</head>\r\n" + //
+            //         "<body>\r\n" + //
+            //         "    <div> first Name : "+firstName+" </div>\r\n" + //  위에 변수를 만들어서 넣어줌
+            //         "    <div>second Name : "+secondName+" </div>\r\n" + //
+            //         "</body>\r\n" + //
+            //         "</html> ";
+            
             printWriter.println(contents); 
             printWriter.close();
         } catch (Exception e) {

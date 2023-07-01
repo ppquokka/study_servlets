@@ -16,7 +16,7 @@ public class Commons {
     }   
     
     public java.sql.Statement getStatement(){
-            String url = "jdbc:mysql://192.168.0.25:3306/db_cars"; 
+            String url = "jdbc:mysql://192.168.0.52:3306/db_cars"; 
             String user = "yojulab";
             String password = "!yojulab*";
 
@@ -35,5 +35,9 @@ public class Commons {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyyhh:mm:ss");  
         String strDate = formatter.format(date);
         return strDate;
+    }
+
+    public String getGeneratorUUID() {
+        return null;
     }
 }
